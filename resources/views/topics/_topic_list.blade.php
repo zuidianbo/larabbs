@@ -1,6 +1,6 @@
-@if (count($topics1))
+@if (count($topics))
 <ul class="list-unstyled">
-    @foreach ($topics1 as $topic)
+    @foreach ($topics as $topic)
     <li class="media">
         <div class="media-left">
             <a href="{{ route('users.show', [$topic->user_id]) }}">

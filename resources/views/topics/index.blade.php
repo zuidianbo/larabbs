@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-{{--@section('title', '话题列表')--}}
-@section('title', isset($category) ? $category->name : '话题列表')
+@section('title', '话题列表')
+
 
 @section('content')
 
@@ -16,19 +16,35 @@
 
       <div class="card ">
 
+        {{--<div class="card-header bg-transparent">--}}
+          {{--<ul class="nav nav-pills">--}}
+            {{--<li class="nav-item"><a class="nav-link active" href="#">最后回复</a></li>--}}
+            {{--<li class="nav-item"><a class="nav-link" href="#">最新发布</a></li>--}}
+          {{--</ul>--}}
+        {{--</div>--}}
+
+
         <div class="card-header bg-transparent">
           <ul class="nav nav-pills">
-            <li class="nav-item"><a class="nav-link active" href="#">最后回复</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">最新发布</a></li>
+            <li class="nav-item">
+              <a class="nav-link {{ active_class( ! if_query('order', 'recent')) }}" href="{{ Request::url() }}?order=default">
+                最后回复
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{ active_class(if_query('order', 'recent')) }}" href="{{ Request::url() }}?order=recent">
+                最新发布
+              </a>
+            </li>
           </ul>
         </div>
 
         <div class="card-body">
           {{-- 话题列表 --}}
-          @include('topics._topic_list', ['topics1' => $topics1])
+          @include('topics._topic_list', ['topics' => $topics])
           {{-- 分页 --}}
           <div class="mt-5">
-            {!! $topics1->appends(Request::except('page'))->render() !!}
+            {!! $topics->appends(Request::except('page'))->render() !!}
           </div>
         </div>
       </div>
