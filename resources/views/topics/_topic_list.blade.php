@@ -1,6 +1,6 @@
-@if (count($topics))
+@if (count($topics1))
 <ul class="list-unstyled">
-    @foreach ($topics as $topic)
+    @foreach ($topics1 as $topic)
     <li class="media">
         <div class="media-left">
             <a href="{{ route('users.show', [$topic->user_id]) }}">
@@ -21,10 +21,12 @@
 
             <small class="media-body meta text-secondary">
 
-                <a class="text-secondary" href="#" title="{{ $topic->category->name }}">
+
+                <a class="text-secondary" href="{{ route('categories.show', $topic->category_id) }}" title="{{ $topic->category->name }}">
                     <i class="far fa-folder"></i>
                     {{ $topic->category->name }}
                 </a>
+
 
                 <span> • </span>
                 <a class="text-secondary" href="{{ route('users.show', [$topic->user_id]) }}" title="{{ $topic->user->name }}">

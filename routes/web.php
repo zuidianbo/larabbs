@@ -53,4 +53,10 @@ Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit'
 
 
 //--------------------
+
+//第五章 帖子列表
+
 Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+
+//分类列表
+Route::resource('categories', 'CategoriesController', ['only' => ['show']]);
