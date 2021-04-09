@@ -60,6 +60,7 @@ class TopicsController extends Controller
 	{
         $this->authorize('update', $topic);
         $categories = Category::all();
+
 		return view('topics.create_and_edit', compact('topic','categories'));
 	}
 
@@ -73,10 +74,10 @@ class TopicsController extends Controller
 
 	public function destroy(Topic $topic)
 	{
-		$this->authorize('destroy', $topic);
+		$this->authorize('destroy11', $topic);
 		$topic->delete();
 
-		return redirect()->route('topics.index')->with('message', 'Deleted successfully.');
+        return redirect()->route('topics.index')->with('success', '成功删除！');
 	}
 
 

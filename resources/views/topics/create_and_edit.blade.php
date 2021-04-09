@@ -9,6 +9,7 @@
                 <div class="card-body">
                     <h2 class="">
                         <i class="far fa-edit"></i>
+
                         @if($topic->id)
                             编辑话题
                         @else
