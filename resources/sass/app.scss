@@ -15,6 +15,28 @@
 @import '~@fortawesome/fontawesome-free/scss/brands';
 
 
+//引入帖子显示的样式
+@import "topic_body";
+
+
+.topics-show-page {
+
+  .card {
+    padding: 15px;
+
+    h1 {
+      margin: 0.4em auto 0.6em;
+      font-size: 28px;
+      line-height: 38px;
+    }
+  }
+}
+
+//帖子显示页面控制图片
+.simditor-body img {
+  max-width:100%;
+}
+
 
 //首页
 
@@ -121,3 +143,5 @@ body {
 #app > div.container {
   margin-bottom: 100px;
 }
+
+
