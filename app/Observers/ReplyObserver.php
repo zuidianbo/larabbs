@@ -7,6 +7,8 @@ use App\Models\Reply;
 // creating, created, updating, updated, saving,
 // saved,  deleting, deleted, restoring, restored
 
+use App\Notifications\TopicReplied;
+
 class ReplyObserver
 {
 //    public function creating(Reply $reply)
@@ -43,6 +45,13 @@ class ReplyObserver
 
 
         $reply->topic->save();
+
+
+
+
+        // 通知话题作者有新的评论
+        $reply->topic->user->notify(new TopicReplied($reply));
+
     }
 
 }
