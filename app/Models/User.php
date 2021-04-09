@@ -55,4 +55,10 @@ class User extends Authenticatable implements MustVerifyEmailContract
         return $this->id == $model->user_id;
     }
 
+//第七章 帖子回复
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
 }

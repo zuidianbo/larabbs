@@ -59,4 +59,11 @@ class Topic extends Model
     }
 
 
+//第七章 帖子回复
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
+
 }
