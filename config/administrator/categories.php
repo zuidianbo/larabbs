@@ -3,8 +3,8 @@
 use App\Models\Category;
 
 return [
-    'title'   => '分类',
-    'single'  => '分类',
+    'title'   => '分类1',
+    'single'  => '分类2',
     'model'   => Category::class,
 
     // 对 CRUD 动作的单独权限控制，其他动作不指定默认为通过
