@@ -39,9 +39,12 @@ class ReplyObserver
 
 //        \DB::enableQueryLog();
 
-        $reply->topic->reply_count = $reply->topic->replies->count();
+//        $reply->topic->reply_count = $reply->topic->replies->count();
 
 //        dd(\DB::getQueryLog());
+
+
+        $reply->topic->updateReplyCount();
 
 
         $reply->topic->save();
@@ -53,5 +56,13 @@ class ReplyObserver
         $reply->topic->user->notify(new TopicReplied($reply));
 
     }
+
+//删除评论后也要监控数量
+    public function deleted(Reply $reply)
+    {
+        $reply->topic->updateReplyCount();
+    }
+
+
 
 }
