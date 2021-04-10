@@ -20,6 +20,10 @@ class User extends Authenticatable implements MustVerifyEmailContract
      * @var array
      */
 
+    use Traits\ActiveUserHelper;
+
+
+
     use HasRoles;
 
     use MustVerifyEmailTrait;
