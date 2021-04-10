@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Auth;
+use Spatie\Permission\Traits\HasRoles;
 //class User extends Authenticatable
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -19,6 +20,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
      * @var array
      */
 
+    use HasRoles;
 
     use MustVerifyEmailTrait;
 
