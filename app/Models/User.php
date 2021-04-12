@@ -6,8 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
-use Auth;
 use Spatie\Permission\Traits\HasRoles;
+use Auth;
 //class User extends Authenticatable
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -19,8 +19,13 @@ class User extends Authenticatable implements MustVerifyEmailContract
      *
      * @var array
      */
-
     use Traits\ActiveUserHelper;
+
+
+    use Traits\LastActivedAtHelper;
+//    {
+//        getLastActivedAtAttribute as protected getLastActivedAtAttribute1;
+//    }
 
 
 

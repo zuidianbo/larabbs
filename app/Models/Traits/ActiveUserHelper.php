@@ -114,4 +114,31 @@ trait ActiveUserHelper
         // 将数据放入缓存中
         Cache::put($this->cache_key, $active_users, $this->cache_expire_in_seconds);
     }
+
+
+//    另一个中间件    use Traits\ActiveUserHelper;  中 已经有一个一模一样的方法了 所以屏蔽
+//    访问器 用于 显示用胡最后登录时间
+//    public function getLastActivedAtAttribute($value)
+//    {
+//        // 获取今天的日期
+//        $date = Carbon::now()->toDateString();
+//
+//        // Redis 哈希表的命名，如：larabbs_last_actived_at_2017-10-21
+//        $hash = $this->hash_prefix . $date;
+//
+//        // 字段名称，如：user_1
+//        $field = $this->field_prefix . $this->id;
+//
+//        // 三元运算符，优先选择 Redis 的数据，否则使用数据库中
+//        $datetime = Redis::hGet($hash, $field) ? : $value;
+//
+//        // 如果存在的话，返回时间对应的 Carbon 实体
+//        if ($datetime) {
+//            return new Carbon($datetime);
+//        } else {
+//            // 否则使用用户注册时间
+//            return $this->created_at;
+//        }
+//    }
+
 }
