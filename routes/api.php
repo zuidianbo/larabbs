@@ -43,11 +43,35 @@ Route::prefix('v1')->namespace('Api')->name('api.v1.')->group(function () {
 
 
 //构建用户注册接口
-Route::prefix('v1')->namespace('Api')->name('api.v1.')->group(function () {
+//版本 控制器的命名空间 版本名 限流中间件(1分钟1次)  路由代码
+Route::prefix('v1')
+    ->namespace('Api')
+    ->name('api.v1.')
+//    ->middleware('throttle:1,1')
+    ->group(function () {
     // 短信验证码
-    Route::post('verificationCodes', 'VerificationCodesController@store')
-        ->name('verificationCodes.store');
-    // 用户注册
-    Route::post('users', 'UsersController@store')
-        ->name('users.store');
+//    Route::post('verificationCodes', 'VerificationCodesController@store')
+//        ->name('verificationCodes.store');
+//    // 用户注册
+//    Route::post('users', 'UsersController@store')
+//        ->name('users.store');
+
+        Route::middleware('throttle:' . config('api.rate_limits.sign'))
+            ->group(function () {
+                // 短信验证码
+                Route::post('verificationCodes', 'VerificationCodesController@store')
+                    ->name('verificationCodes.store');
+                // 用户注册
+                Route::post('users', 'UsersController@store')
+                    ->name('users.store');
+            });
+
+
+        Route::middleware('throttle:' . config('api.rate_limits.access'))
+            ->group(function () {
+
+            });
+
+
+
 });
