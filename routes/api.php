@@ -33,3 +33,10 @@ Route::prefix('v1')->name('api.v1.')->group(function() {
 //        return 'this is version v2';
 //    })->name('version');
 //});
+
+//namespace是控制器所在的命名空间
+Route::prefix('v1')->namespace('Api')->name('api.v1.')->group(function () {
+    // 短信验证码
+    Route::post('verificationCodes', 'VerificationCodesController@store')
+        ->name('verificationCodes.store');
+});
