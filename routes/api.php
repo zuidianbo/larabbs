@@ -16,3 +16,20 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+//测试
+
+Route::prefix('v1')->name('api.v1.')->group(function() {
+    Route::get('version', function() {
+//        abort(403, '88888888');
+        return 'this is version v1';
+    })->name('version');
+});
+
+
+//Route::prefix('v2')->name('api.v2.')->group(function() {
+//    Route::get('version', function() {
+//        return 'this is version v2';
+//    })->name('version');
+//});
