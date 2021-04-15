@@ -20,8 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //测试
 
-Route::prefix('v1')->name('api.v1.')->group(function() {
-    Route::get('version', function() {
+Route::prefix('v1')->name('api.v1.')->group(function () {
+    Route::get('version', function () {
 //        abort(403, '88888888');
         return 'this is version v1';
     })->name('version');
@@ -49,7 +49,7 @@ Route::prefix('v1')
     ->name('api.v1.')
 //    ->middleware('throttle:1,1')
     ->group(function () {
-    // 短信验证码
+        // 短信验证码
 //    Route::post('verificationCodes', 'VerificationCodesController@store')
 //        ->name('verificationCodes.store');
 //    // 用户注册
@@ -91,7 +91,6 @@ Route::prefix('v1')
             ->name('api.authorizations.store');
 
 
-
         // 刷新token
         Route::put('authorizations/current', 'AuthorizationsController@update')
             ->name('authorizations.update');
@@ -109,14 +108,23 @@ Route::prefix('v1')
                 Route::get('users/{user}', 'UsersController@show')
                     ->name('users.show');
 
-
                 // 分类列表
                 Route::get('categories', 'CategoriesController@index')
                     ->name('categories.index');
 
+
+                // 话题列表，详情
+                Route::resource('topics', 'TopicsController')->only([
+                    'index', 'show'
+                ]);
+
+
+
+
+
                 // 当前登录用户的信息
                 // 登录后可以访问的接口
-                Route::middleware('auth:api')->group(function() {
+           Route::middleware('auth:api')->group(function () {
                     // 当前登录用户信息
                     Route::get('user', 'UsersController@me')
                         ->name('user.show');
@@ -128,25 +136,20 @@ Route::prefix('v1')
                     // 上传图片
                     Route::post('images', 'ImagesController@store')
                         ->name('images.store');
+
+                    // 登录后可以访问的接口
+
+                    // 发布话题
+                    Route::resource('topics', 'TopicsController')->only([
+                        'store', 'update', 'destroy'
+                    ]);
+
+
                 });
+
+
             });
 
-
-
-// 游客可以访问的接口
-
-        // 话题列表，详情
-        Route::resource('topics', 'TopicsController')->only([
-            'index', 'show'
-        ]);
-
-
-        // 登录后可以访问的接口
-
-        // 发布话题
-        Route::resource('topics', 'TopicsController')->only([
-            'store', 'update', 'destroy'
-        ]);
 
 
 
