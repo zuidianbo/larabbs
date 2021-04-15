@@ -35,4 +35,12 @@ return [
         'key'   => env('BAIDU_TRANSLATE_KEY'),
     ],
 
+
+//    微信登录 客户端只获取授权码
+
+    'weixin' => [
+        'client_id' => env('WEIXIN_KEY'),
+        'client_secret' => env('WEIXIN_SECRET'),
+        'redirect' => env('WEIXIN_REDIRECT_URI'),
+    ],
 ];
