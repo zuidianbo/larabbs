@@ -133,11 +133,20 @@ Route::prefix('v1')
 
 
 
+// 游客可以访问的接口
+
+        // 话题列表，详情
+        Route::resource('topics', 'TopicsController')->only([
+            'index', 'show'
+        ]);
 
 
+        // 登录后可以访问的接口
 
-
-
+        // 发布话题
+        Route::resource('topics', 'TopicsController')->only([
+            'store', 'update', 'destroy'
+        ]);
 
 
 
