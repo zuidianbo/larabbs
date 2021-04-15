@@ -110,12 +110,30 @@ Route::prefix('v1')
                     ->name('users.show');
 
                 // 当前登录用户的信息
+                // 登录后可以访问的接口
                 Route::middleware('auth:api')->group(function() {
                     // 当前登录用户信息
                     Route::get('user', 'UsersController@me')
                         ->name('user.show');
+
+                    // 编辑登录用户信息
+                    Route::patch('user', 'UsersController@update')
+                        ->name('user.update');
+
+                    // 上传图片
+                    Route::post('images', 'ImagesController@store')
+                        ->name('images.store');
                 });
             });
+
+
+
+
+
+
+
+
+
 
 
     });

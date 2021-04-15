@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
 use App\Http\Requests\Api\UserRequest;
 use Illuminate\Auth\AuthenticationException;
+use App\Models\Image;
 
 class UsersController extends Controller
 {
@@ -37,17 +38,36 @@ class UsersController extends Controller
     }
 
 
-
+    // 某个用户的详情
     public function show(User $user, Request $request)
     {
         return new UserResource($user);
     }
 
+    // 登录后 自己的信息
     public function me(Request $request)
     {
 //        return new UserResource($request->user());
 
         return (new UserResource($request->user()))->showSensitiveFields();
+    }
+
+
+    public function update(UserRequest $request)
+    {
+        $user = $request->user();
+
+        $attributes = $request->only(['name', 'email', 'introduction']);
+
+        if ($request->avatar_image_id) {
+            $image = Image::find($request->avatar_image_id);
+
+            $attributes['avatar'] = $image->path;
+        }
+
+        $user->update($attributes);
+
+        return (new UserResource($user))->showSensitiveFields();
     }
 
 
