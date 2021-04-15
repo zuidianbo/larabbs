@@ -1,15 +1,27 @@
 <?php
 
+//namespace App\Models;
+//
+//use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
+//use Illuminate\Foundation\Auth\User as Authenticatable;
+//use Illuminate\Notifications\Notifiable;
+//use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
+//use Spatie\Permission\Traits\HasRoles;
+//use Auth;
+
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
-use Spatie\Permission\Traits\HasRoles;
 use Auth;
+use Spatie\Permission\Traits\HasRoles;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
+use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
+
+
 //class User extends Authenticatable
-class User extends Authenticatable implements MustVerifyEmailContract
+class User extends Authenticatable implements MustVerifyEmailContract,JWTSubject
 {
 //    use Notifiable;
 
@@ -132,6 +144,21 @@ class User extends Authenticatable implements MustVerifyEmailContract
         }
 
         $this->attributes['avatar'] = $path;
+    }
+
+
+
+
+
+    public function getJWTIdentifier()
+    {
+//        返回user的id
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 
 }
