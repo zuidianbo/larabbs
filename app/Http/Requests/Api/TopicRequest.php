@@ -14,7 +14,6 @@ class TopicRequest extends FormRequest
 //    }
 
 
-
     public function rules()
     {
         switch($this->method()) {
@@ -34,7 +33,6 @@ class TopicRequest extends FormRequest
                 break;
         }
     }
-
 
 
     public function attributes()

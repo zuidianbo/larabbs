@@ -13,7 +13,7 @@ class TopicsController extends Controller
     {
 //        dd($request->user()->id);
 
-        print_r($request->user());
+//        print_r($request->user());
 
 
         $topic->fill($request->all());
@@ -29,7 +29,22 @@ class TopicsController extends Controller
     {
         $this->authorize('update', $topic);
 
+        $topic->fill($request->all());
+//        die($topic->title);
+
         $topic->update($request->all());
         return new TopicResource($topic);
     }
+
+
+
+    public function destroy(Topic $topic)
+    {
+        $this->authorize('destroy', $topic);
+
+        $topic->delete();
+
+        return response(null, 204);
+    }
+
 }
