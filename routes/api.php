@@ -161,7 +161,19 @@ Route::prefix('v1')
                     ->name('topics.replies.destroy');
 
                 });
+// 通知列表
+                Route::get('notifications', 'NotificationsController@index')
+                    ->name('notifications.index');
 
+                // 通知统计
+                Route::get('notifications/stats', 'NotificationsController@stats')
+                    ->name('notifications.stats');
+
+
+
+                // 标记消息通知为已读
+                Route::patch('user/read/notifications', 'NotificationsController@read')
+                    ->name('user.notifications.read');
             });
 
 

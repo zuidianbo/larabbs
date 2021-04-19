@@ -47,7 +47,7 @@ class ReplyObserver
         $reply->topic->updateReplyCount();
 
 
-        $reply->topic->save();
+//        $reply->topic->save();
 
 
 
