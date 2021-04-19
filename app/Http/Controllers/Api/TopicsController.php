@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Topic;
 use Illuminate\Http\Request;
+
+use App\Http\Queries\TopicQuery;
+
 use App\Http\Resources\TopicResource;
 use App\Http\Requests\Api\TopicRequest;
 
